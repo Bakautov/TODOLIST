@@ -44,7 +44,7 @@ function TodoPanel() {
             Add
           </button>
         
-        <div className="flex flex-col divide-y w-full">
+        <div className="flex flex-col divide-y w-full overflow-y-scroll">
           {todos.map((item) =>
             <Todo
             todo={item}
