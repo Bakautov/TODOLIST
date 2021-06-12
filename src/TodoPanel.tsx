@@ -28,7 +28,7 @@ function TodoPanel() {
           <div className="text-black flex items-center bg-white rounded-lg mb-2">
             <label>Title:</label>
             <input
-	      className="flex-1 bg-transparent p-3 pl-0 outline-none"
+	      className="flex-1 bg-transparent p-3 outline-none"
               type="text"
               id="title"
               name="title"
