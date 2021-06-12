@@ -22,12 +22,13 @@ function TodoPanel() {
   };
 
   return (
-    <div>
-      <div>
-        <h1>Todo App</h1>
-          <div>
+    <div className="flex items-center justify-center h-screen">
+      <div className="font-sans text-black flex-col flex items-center bg-indigo-400 bg-opacity-10 border shadow rounded-lg p-3 w-1/3 h-auto max-h-2/3">
+        <h1 className="p-5 text-lg font-bold">Todo App</h1>
+          <div className="text-black flex items-center bg-white rounded-lg mb-2">
             <label>Title:</label>
             <input
+	      className="flex-1 bg-transparent p-3 pl-0 outline-none"
               type="text"
               id="title"
               name="title"
@@ -37,12 +38,13 @@ function TodoPanel() {
             ></input>
           </div>
           <button
+	    className="block focus:outline-none text-black w-full rounded bg-white p-2"
             onClick={addTodo}
           >
             Add
           </button>
         
-        <div>
+        <div className="flex flex-col divide-y w-full">
           {todos.map((item) =>
             <Todo
             todo={item}
