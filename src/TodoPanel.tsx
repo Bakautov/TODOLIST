@@ -17,6 +17,7 @@ function TodoPanel() {
 
   const addTodo = (event: any) => {
     event?.preventDefault();
+    if (todos.some((item: ITodo) => item.title == input) || !input) return;
     setTodos([...todos, { title: input }]);
     setInput("");
   };
