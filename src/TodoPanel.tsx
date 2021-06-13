@@ -15,6 +15,10 @@ function TodoPanel() {
     setInput(event.target.value);
   };
 
+  const deleteTodo = (title: string) => {
+  setTodos(todos.filter((todo) => todo.title !== title));
+  };
+
   const addTodo = (event: any) => {
     event?.preventDefault();
     if (todos.some((item: ITodo) => item.title == input) || !input) return;
@@ -49,6 +53,7 @@ function TodoPanel() {
           {todos.map((item) =>
             <Todo
             todo={item}
+	    deleteTodo={deleteTodo}
             ></Todo>
             )
           }
