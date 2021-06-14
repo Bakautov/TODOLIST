@@ -5,12 +5,30 @@ import { faCheck, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 interface IProps {
   todo: ITodo;
+  finishTodo: Function;
   deleteTodo: Function;
 }
 
-const Todo = ({ todo, deleteTodo }: IProps) => {
+const Todo = ({ todo, finishTodo, deleteTodo }: IProps) => {
   return (
     <div className="flex w-full items-center p-5">
+    {todo.finished ? (
+        <FontAwesomeIcon
+          className="fill-current text-green-300 cursor-pointer mr-3"
+          onClick={() => {
+            finishTodo(todo.title);
+          }}
+          icon={faCheck}
+        />
+      ) : (
+        <FontAwesomeIcon
+          className="fill-current text-white hover:text-blue-200 cursor-pointer mr-3"
+          onClick={() => {
+            finishTodo(todo.title);
+          }}
+          icon={faCheck}
+        />
+      )}
       <span className="">{todo.title}</span>
 	<div className="flex-grow"></div>
 	<FontAwesomeIcon

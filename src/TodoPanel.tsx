@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { isTemplateExpression } from "typescript";
 import Todo from "./Todo";
 
 export interface ITodo {
-  title: String;
+  title: string;
+  finished: boolean;
 }
 
 function TodoPanel() {
@@ -22,12 +24,17 @@ function TodoPanel() {
   const addTodo = (event: any) => {
     event?.preventDefault();
     if (todos.some((item: ITodo) => item.title == input) || !input) return;
-    setTodos([...todos, { title: input }]);
+    setTodos([...todos, { title: input, finished: false }]);
     setInput("");
   };
 
+  const finishTodo = (title: string) => {
+    setTodos(
+    todos.map((item: ITodo) => ({ title: item.title, finished: item.title == title ? !item.finished : item.finished }))); 
+    };
+
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen bg-image">
       <div className="font-sans text-black flex-col flex items-center bg-indigo-400 bg-opacity-10 border shadow rounded-lg p-3 w-1/3 h-auto max-h-2/3">
         <h1 className="p-5 text-lg font-bold">Todo App</h1>
           <div className="text-black flex items-center bg-white rounded-lg mb-2">
@@ -53,7 +60,8 @@ function TodoPanel() {
           {todos.map((item) =>
             <Todo
             todo={item}
-	    deleteTodo={deleteTodo}
+            finishTodo = {finishTodo}
+	          deleteTodo={deleteTodo}
             ></Todo>
             )
           }
