@@ -5,7 +5,14 @@ module.exports = {
   maxHeight: {
       "3/4": "75%",
       "2/3": "66%",},
-    extend: {},  
+    extend: {
+      outline: {
+        blue: "2px solid #0000ff",
+      },
+      backgroundImage: (theme) => ({
+        image: "url('./bg.jpg')",
+      }),
+    },  
   },
   variants: {
     extend: {},

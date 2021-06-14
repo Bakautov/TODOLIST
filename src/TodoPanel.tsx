@@ -45,7 +45,7 @@ function TodoPanel() {
       <form action="" className="w-3/4 mb-5">
         <h1 className="p-5 text-center text-lg font-bold">Todo App</h1>
           <div className="text-black flex items-center bg-white rounded-lg mb-2">
-            <label>Title:</label>
+            <label className = "mx-4">Title:</label>
             <input
 	      className="flex-1 bg-transparent p-3 outline-none"
               type="text"
