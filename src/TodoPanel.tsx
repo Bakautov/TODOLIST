@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { isTemplateExpression } from "typescript";
 import Todo from "./Todo";
 
 export interface ITodo {
@@ -25,14 +24,14 @@ function TodoPanel() {
 
   const addTodo = (event: any) => {
     event?.preventDefault();
-    if (todos.some((item: ITodo) => item.title == input) || !input) return;
+    if (todos.some((item: ITodo) => item.title === input) || !input) return;
     setTodos([...todos, { title: input, finished: false }]);
     setInput("");
   };
 
   const finishTodo = (title: string) => {
     setTodos(
-    todos.map((item: ITodo) => ({ title: item.title, finished: item.title == title ? !item.finished : item.finished }))); 
+    todos.map((item: ITodo) => ({ title: item.title, finished: item.title === title ? !item.finished : item.finished }))); 
     };
 
     const toggleHideFinished = () => {
