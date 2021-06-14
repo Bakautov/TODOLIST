@@ -12,6 +12,8 @@ function TodoPanel() {
   const [todos, setTodos] = useState<ITodo[]>([]);
 
   const [input, setInput] = useState<string>("");
+
+  const [hidefinished, setHidefinished] = useState<boolean>(false);
  
   const handleChange = (event: any) => {
     setInput(event.target.value);
@@ -33,10 +35,15 @@ function TodoPanel() {
     todos.map((item: ITodo) => ({ title: item.title, finished: item.title == title ? !item.finished : item.finished }))); 
     };
 
+    const toggleHideFinished = () => {
+      setHidefinished(!hidefinished);
+    };
+
   return (
     <div className="flex items-center justify-center h-screen bg-image">
       <div className="font-sans text-black flex-col flex items-center bg-indigo-400 bg-opacity-10 border shadow rounded-lg p-3 w-1/3 h-auto max-h-2/3">
-        <h1 className="p-5 text-lg font-bold">Todo App</h1>
+      <form action="" className="w-3/4 mb-5">
+        <h1 className="p-5 text-center text-lg font-bold">Todo App</h1>
           <div className="text-black flex items-center bg-white rounded-lg mb-2">
             <label>Title:</label>
             <input
@@ -55,16 +62,40 @@ function TodoPanel() {
           >
             Add
           </button>
-        
+          </form>
+          { hidefinished ? (
+          <button
+            className="block focus:outline-none text-black w-3/4 rounded bg-blue-200 bg-opacity-20 p-2"
+            onClick={toggleHideFinished}
+          >
+            Hide Finished
+          </button>
+        ) : (
+          <button
+            className="block focus:outline-none text-black w-3/4 rounded bg-white p-2"
+            onClick={toggleHideFinished}
+          >
+            Hide Finished
+          </button>
+        )}
         <div className="flex flex-col divide-y w-full overflow-y-scroll">
-          {todos.map((item) =>
-            <Todo
-            todo={item}
-            finishTodo = {finishTodo}
-	          deleteTodo={deleteTodo}
-            ></Todo>
+        {todos.map((item) =>
+            hidefinished ? (
+              !item.finished ? (
+                <Todo
+                  todo={item}
+                  finishTodo={finishTodo}
+                  deleteTodo={deleteTodo}
+                ></Todo>
+              ) : null
+            ) : (
+              <Todo
+                todo={item}
+                finishTodo={finishTodo}
+                deleteTodo={deleteTodo}
+              ></Todo>
             )
-          }
+          )}
         </div>
       </div>
     </div>
