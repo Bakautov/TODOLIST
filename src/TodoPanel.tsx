@@ -5,6 +5,7 @@ import Todo from "./Todo";
 export interface ITodo {
   title: string;
   finished: boolean;
+  id: number;
 }
 
 function TodoPanel() {
@@ -25,13 +26,13 @@ function TodoPanel() {
   const addTodo = (event: any) => {
     event?.preventDefault();
     if (todos.some((item: ITodo) => item.title === input) || !input) return;
-    setTodos([...todos, { title: input, finished: false }]);
+    setTodos([...todos, { title: input, finished: false, id: todos.length+1}]);
     setInput("");
   };
 
   const finishTodo = (title: string) => {
     setTodos(
-    todos.map((item: ITodo) => ({ title: item.title, finished: item.title === title ? !item.finished : item.finished }))); 
+    todos.map((item: ITodo) => ({ title: item.title, finished: item.title === title ? !item.finished : item.finished, id: item.id }))); 
     };
 
     const toggleHideFinished = () => {
@@ -85,6 +86,7 @@ function TodoPanel() {
                   todo={item}
                   finishTodo={finishTodo}
                   deleteTodo={deleteTodo}
+                  key = {item.id}
                 ></Todo>
               ) : null
             ) : (
@@ -92,6 +94,7 @@ function TodoPanel() {
                 todo={item}
                 finishTodo={finishTodo}
                 deleteTodo={deleteTodo}
+                key = {item.id}
               ></Todo>
             )
           )}
